@@ -53,6 +53,11 @@ def print_menu():
     print("  19. Telegram Bot")
     print("  20. Discord Bot")
     
+    print("\n🌟 SOCIAL MEDIA PRO (HIGHEST QUALITY):")
+    print("  21. Instagram Pro (Zero Compression)")
+    print("  22. TikTok Pro (No Watermark)")
+    print("  23. Social Pro Manager (Auto-detect)")
+    
     print("\n  0. Exit")
     print("="*60)
 
@@ -202,6 +207,100 @@ async def cloud_upload():
 def telegram_bot():
     from streamforge.bots.telegram_bot import main
     main()
+
+async def instagram_pro():
+    from streamforge.social.instagram_pro import InstagramProDownloader
+    downloader = InstagramProDownloader()
+    
+    print("\n📸 Instagram Pro - Highest Quality")
+    print("1. Download Post/Video")
+    print("2. Download Reel")
+    print("3. Download IGTV")
+    print("4. Batch Download")
+    
+    choice = input("\nSelect: ")
+    
+    if choice == '1':
+        url = input("Enter Instagram URL: ")
+        downloader.download_post(url)
+    elif choice == '2':
+        url = input("Enter Reel URL: ")
+        downloader.download_reel(url)
+    elif choice == '3':
+        url = input("Enter IGTV URL: ")
+        downloader.download_igtv(url)
+    elif choice == '4':
+        print("Enter URLs (empty to finish):")
+        urls = []
+        while True:
+            url = input()
+            if not url:
+                break
+            urls.append(url)
+        if urls:
+            downloader.batch_download(urls)
+
+async def tiktok_pro():
+    from streamforge.social.tiktok_pro import TikTokProDownloader
+    downloader = TikTokProDownloader()
+    
+    print("\n🎵 TikTok Pro - No Watermark, Highest Quality")
+    print("1. Download Video (No Watermark)")
+    print("2. Download User's Videos")
+    print("3. Download Hashtag Videos")
+    print("4. Batch Download")
+    
+    choice = input("\nSelect: ")
+    
+    if choice == '1':
+        url = input("Enter TikTok URL: ")
+        downloader.download_video(url, no_watermark=True)
+    elif choice == '2':
+        username = input("Enter username: ")
+        max_videos = input("Max videos (default 10): ") or "10"
+        downloader.download_user_videos(username, int(max_videos))
+    elif choice == '3':
+        hashtag = input("Enter hashtag: ")
+        max_videos = input("Max videos (default 10): ") or "10"
+        downloader.download_hashtag(hashtag, int(max_videos))
+    elif choice == '4':
+        print("Enter URLs (empty to finish):")
+        urls = []
+        while True:
+            url = input()
+            if not url:
+                break
+            urls.append(url)
+        if urls:
+            downloader.batch_download(urls, no_watermark=True)
+
+async def social_pro_manager():
+    from streamforge.social.social_pro_manager import SocialProManager
+    manager = SocialProManager()
+    
+    print("\n🌟 Social Pro Manager")
+    print("1. Smart Download (Auto-detect)")
+    print("2. Batch Smart Download")
+    print("3. Compare Quality")
+    
+    choice = input("\nSelect: ")
+    
+    if choice == '1':
+        url = input("Enter URL (Instagram/TikTok): ")
+        manager.smart_download(url)
+    elif choice == '2':
+        print("Enter URLs (empty to finish):")
+        urls = []
+        while True:
+            url = input()
+            if not url:
+                break
+            urls.append(url)
+        if urls:
+            manager.batch_smart_download(urls)
+    elif choice == '3':
+        url = input("Enter URL: ")
+        manager.compare_quality(url)
 
 async def scheduler_menu():
     from streamforge.utils.scheduler import DownloadScheduler
@@ -357,6 +456,12 @@ async def main():
                 telegram_bot()
             elif choice == '20':
                 print("\n⚠️  Discord bot - Coming soon!")
+            elif choice == '21':
+                await instagram_pro()
+            elif choice == '22':
+                await tiktok_pro()
+            elif choice == '23':
+                await social_pro_manager()
             else:
                 print("\n❌ Invalid option!")
             
