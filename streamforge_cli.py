@@ -13,11 +13,64 @@ sys.path.insert(0, str(Path(__file__).parent / 'src'))
 def print_banner():
     print("""
 ╔═══════════════════════════════════════════════════════════════╗
-║              🎬 STREAMFORGE-PRO v1.0.0                       ║
+║              🎬 STREAMFORGE-PRO v2.0.0                       ║
 ║         Advanced Multi-Platform Media Downloader              ║
 ║              Created by Raj Saraswati                         ║
+║                                                               ║
+║  ⚠️  COPYRIGHT © 2025 Raj Saraswati - All Rights Reserved   ║
+║  ⚖️  Educational & Ethical Use Only                          ║
+║  🚫 Copying/Cloning Without Permission is ILLEGAL            ║
 ╚═══════════════════════════════════════════════════════════════╝
+
+⚠️  LEGAL WARNING:
+   • This software is COPYRIGHTED and PROTECTED
+   • Use for EDUCATIONAL purposes only
+   • Respect copyright laws and platform ToS
+   • Unauthorized copying will result in legal action
+
+✅ By using this software, you agree to:
+   • Use ethically and legally
+   • Not violate copyright laws
+   • Give credit to original author
+   • Follow platform Terms of Service
+
+📖 Read LICENSE_AND_WARNINGS.md for full terms
 """)
+
+def show_disclaimer():
+    print("""
+╔═══════════════════════════════════════════════════════════════╗
+║                    ⚠️  DISCLAIMER ⚠️                         ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  This tool is for EDUCATIONAL & ETHICAL purposes only.        ║
+║                                                               ║
+║  ✅ Allowed:                                                  ║
+║     • Download YOUR OWN content                               ║
+║     • Educational/Research purposes                           ║
+║     • Personal backup of public content                       ║
+║                                                               ║
+║  ❌ Prohibited:                                               ║
+║     • Copyright infringement                                  ║
+║     • Piracy or unauthorized distribution                     ║
+║     • Violating platform Terms of Service                     ║
+║     • Commercial use without permission                       ║
+║                                                               ║
+║  ⚖️  You are SOLELY responsible for your actions.            ║
+║  🚫 Developer is NOT liable for misuse.                       ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+Do you agree to use this software ethically and legally? (yes/no): """)
+    
+    response = input().strip().lower()
+    if response != 'yes':
+        print("\n❌ You must agree to the terms to use this software.")
+        print("Exiting...\n")
+        sys.exit(0)
+    
+    print("\n✅ Terms accepted. Proceeding...\n")
+    time.sleep(1)
 
 def print_menu():
     print("\n" + "="*60)
@@ -406,7 +459,10 @@ def view_history():
     print(f"\n📈 Stats: {stats[1]}/{stats[0]} completed")
 
 async def main():
+    import time
     print_banner()
+    time.sleep(2)
+    show_disclaimer()
     
     while True:
         print_menu()

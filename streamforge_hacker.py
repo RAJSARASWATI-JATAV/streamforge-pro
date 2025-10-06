@@ -190,7 +190,50 @@ async def ai_optimizer():
     
     HackerUI.status_line('success', 'Analysis completed')
 
+def show_legal_warning():
+    """Display legal warning and get user consent"""
+    from colorama import Fore, Style
+    warning = f"""
+{Fore.RED}╔═══════════════════════════════════════════════════════════════════════════╗
+{Fore.RED}║{Fore.YELLOW}                      ⚠️  LEGAL WARNING ⚠️                           {Fore.RED}║
+{Fore.RED}╠═══════════════════════════════════════════════════════════════════════════╣
+{Fore.RED}║{Fore.WHITE}                                                                           {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}  COPYRIGHT © 2025 Raj Saraswati - All Rights Reserved                  {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}                                                                           {Fore.RED}║
+{Fore.RED}║{Fore.YELLOW}  This software is COPYRIGHTED and PROTECTED by law.                     {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}                                                                           {Fore.RED}║
+{Fore.RED}║{Fore.GREEN}  ✅ ALLOWED USES:                                                        {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}     • Educational & Research purposes                                   {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}     • Download YOUR OWN content                                        {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}     • Personal backup of public content                                {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}                                                                           {Fore.RED}║
+{Fore.RED}║{Fore.RED}  ❌ PROHIBITED:                                                          {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}     • Copyright infringement or piracy                                 {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}     • Violating platform Terms of Service                              {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}     • Copying/cloning this code without permission                     {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}     • Commercial use without authorization                             {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}                                                                           {Fore.RED}║
+{Fore.RED}║{Fore.YELLOW}  ⚠️  YOU are SOLELY responsible for your actions                       {Fore.RED}║
+{Fore.RED}║{Fore.YELLOW}  🚫 Developer is NOT liable for misuse                                 {Fore.RED}║
+{Fore.RED}║{Fore.WHITE}                                                                           {Fore.RED}║
+{Fore.RED}╚═══════════════════════════════════════════════════════════════════════════╝{Style.RESET_ALL}
+"""
+    print(warning)
+    
+    response = input(f"{Fore.CYAN}[LEGAL] Do you agree to use this software ethically and legally? (yes/no): {Fore.WHITE}").strip().lower()
+    
+    if response != 'yes':
+        print(f"{Fore.RED}[ERROR] Terms not accepted. Exiting...{Style.RESET_ALL}")
+        time.sleep(1)
+        sys.exit(0)
+    
+    print(f"{Fore.GREEN}[SUCCESS] Terms accepted. Proceeding...{Style.RESET_ALL}")
+    time.sleep(1)
+
 async def main():
+    # Legal warning first
+    show_legal_warning()
+    
     # System initialization
     HackerUI.system_init()
     
