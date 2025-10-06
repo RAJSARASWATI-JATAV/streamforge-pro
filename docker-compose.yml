@@ -1,0 +1,18 @@
+version: '3.8'
+
+# StreamForge-Pro Docker Compose
+# Created by RAJSARASWATI JATAV
+# Copyright (c) 2025 RAJSARASWATI JATAV
+
+services:
+  streamforge:
+    build: .
+    container_name: streamforge-pro
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./downloads:/app/downloads
+      - ./config:/app/config
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
