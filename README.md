@@ -24,7 +24,7 @@
 ║                                                                           ║
 ║              🌐 GitHub: @rajsaraswati | @RAJSARASWATI-JATAV             ║
 ║              📧 Email: rajsaraswatijatav@outlook.com                     ║
-║              🌐 Website: rajsaraswati.dev                                ║
+║              🌐 Portfolio: https://rajsaraswati-jatav.github.io/rajsaraswatijatav.io/ ║
 ║              📍 Location: Gwalior, Madhya Pradesh, India                 ║
 ║              🎓 Education: MLB Arts & Commerce College, Gwalior          ║
 ║                                                                           ║
@@ -52,6 +52,7 @@
 [![Features](https://img.shields.io/badge/features-50%2B-orange.svg)](https://github.com/RAJSARASWATI-JATAV/streamforge-pro)
 [![Platforms](https://img.shields.io/badge/platforms-1000%2B-blue.svg)](https://github.com/RAJSARASWATI-JATAV/streamforge-pro)
 [![Downloads](https://img.shields.io/badge/downloads-unlimited-success.svg)](https://github.com/RAJSARASWATI-JATAV/streamforge-pro)
+[![Portfolio](https://img.shields.io/badge/portfolio-rajsaraswati--jatav-purple.svg)](https://rajsaraswati-jatav.github.io/rajsaraswatijatav.io/)
 
 ---
 
