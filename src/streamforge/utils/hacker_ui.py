@@ -19,7 +19,24 @@ class HackerUI:
         'white': Fore.WHITE,
         'bright_green': Fore.LIGHTGREEN_EX,
         'bright_cyan': Fore.LIGHTCYAN_EX,
+        'neon_green': '\033[38;5;46m',
+        'neon_pink': '\033[38;5;201m',
+        'neon_blue': '\033[38;5;51m',
+        'neon_purple': '\033[38;5;165m',
+        'reset': '\033[0m'
     }
+    
+    @staticmethod
+    def rainbow_text(text):
+        """Rainbow effect"""
+        colors = [Fore.RED, Fore.YELLOW, Fore.GREEN, Fore.CYAN, Fore.BLUE, Fore.MAGENTA]
+        return ''.join(colors[i % len(colors)] + c for i, c in enumerate(text)) + Style.RESET_ALL
+    
+    @staticmethod
+    def neon_glow(text, color='neon_green'):
+        """Neon glow effect"""
+        c = HackerUI.COLORS.get(color, HackerUI.COLORS['neon_green'])
+        return f"{c}{text}{HackerUI.COLORS['reset']}"
     
     @staticmethod
     def clear_screen():
@@ -98,7 +115,8 @@ class HackerUI:
 {Fore.CYAN}║                                                                           ║
 {Fore.CYAN}║{Fore.YELLOW}                          -= HACKER EDITION =-                          {Fore.CYAN}║
 {Fore.CYAN}║{Fore.RED}                    Advanced Media Extraction System                   {Fore.CYAN}║
-{Fore.CYAN}║{Fore.WHITE}                         Version 2.0.0 [ELITE]                         {Fore.CYAN}║
+{Fore.CYAN}║{Fore.WHITE}                         Version 2.2.0 [ELITE]                         {Fore.CYAN}║
+{Fore.CYAN}║{HackerUI.COLORS['neon_pink']}                    🌈 COLORFUL VISUAL EFFECTS 🌈                     {Fore.CYAN}║
 {Fore.CYAN}║                                                                           ║
 {Fore.CYAN}║{Fore.GREEN}  [+] AI-Powered Quality Optimizer                                     {Fore.CYAN}║
 {Fore.CYAN}║{Fore.GREEN}  [+] Zero-Compression Technology                                      {Fore.CYAN}║
