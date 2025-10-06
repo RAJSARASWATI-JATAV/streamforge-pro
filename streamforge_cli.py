@@ -37,13 +37,15 @@ def print_menu():
     
     print("\n🖥️  INTERFACES:")
     print("  9. Interactive CLI")
-    print("  10. Launch GUI")
-    print("  11. Start Web Server")
+    print("  10. Launch GUI (Enhanced)")
+    print("  11. Start Web Server (Enhanced)")
     
     print("\n⚙️  UTILITIES:")
     print("  12. Download Manager Test")
     print("  13. View Download History")
-    print("  14. Settings")
+    print("  14. Analytics Dashboard")
+    print("  15. Download Scheduler")
+    print("  16. Settings")
     
     print("\n  0. Exit")
     print("="*60)
@@ -101,6 +103,83 @@ async def video_converter():
     format = input("Output format (mp4/avi/mkv/webm): ") or 'mp4'
     converter.convert(input_file, format)
 
+async def video_editor():
+    from streamforge.core.video_editor import VideoEditor
+    editor = VideoEditor()
+    
+    print("\n🎬 Video Editor")
+    print("1. Trim video")
+    print("2. Add watermark")
+    print("3. Extract audio")
+    print("4. Create GIF")
+    print("5. Merge videos")
+    
+    choice = input("\nSelect: ")
+    
+    if choice == '1':
+        input_file = input("Input file: ")
+        output_file = input("Output file: ")
+        start = input("Start time (HH:MM:SS): ")
+        end = input("End time (HH:MM:SS): ")
+        editor.trim_video(input_file, output_file, start, end)
+    elif choice == '2':
+        input_file = input("Input file: ")
+        output_file = input("Output file: ")
+        text = input("Watermark text: ")
+        editor.add_watermark(input_file, output_file, text)
+    elif choice == '3':
+        input_file = input("Input file: ")
+        output_file = input("Output file (mp3): ")
+        editor.extract_audio(input_file, output_file)
+    elif choice == '4':
+        input_file = input("Input file: ")
+        output_file = input("Output file (gif): ")
+        editor.create_gif(input_file, output_file)
+
+async def channel_download():
+    from streamforge.core.channel_downloader import ChannelDownloader
+    downloader = ChannelDownloader()
+    url = input("\n📝 Enter channel URL: ")
+    max_videos = input("Max videos (leave empty for all): ")
+    max_videos = int(max_videos) if max_videos else None
+    downloader.download_channel(url, max_videos)
+
+async def live_recorder():
+    from streamforge.core.live_stream_recorder import LiveStreamRecorder
+    recorder = LiveStreamRecorder()
+    url = input("\n📝 Enter live stream URL: ")
+    duration = input("Duration in seconds (leave empty for full): ")
+    duration = int(duration) if duration else None
+    await recorder.record_stream(url, duration)
+
+async def analytics_dashboard():
+    from streamforge.utils.analytics import Analytics
+    analytics = Analytics()
+    analytics.print_dashboard()
+
+async def scheduler_menu():
+    from streamforge.utils.scheduler import DownloadScheduler
+    from datetime import datetime
+    
+    scheduler = DownloadScheduler()
+    
+    print("\n⏰ Download Scheduler")
+    print("1. Schedule download")
+    print("2. List scheduled")
+    print("3. Start scheduler")
+    
+    choice = input("\nSelect: ")
+    
+    if choice == '1':
+        url = input("URL: ")
+        time_str = input("Time (YYYY-MM-DD HH:MM): ")
+        scheduled_time = datetime.strptime(time_str, "%Y-%m-%d %H:%M")
+        scheduler.schedule_download(url, scheduled_time)
+    elif choice == '2':
+        scheduler.list_scheduled()
+    elif choice == '3':
+        await scheduler.start_scheduler()
+
 async def quality_test():
     from streamforge.core.quality_selector import QualitySelector
     selector = QualitySelector()
@@ -139,16 +218,34 @@ async def interactive_cli():
     await main()
 
 def launch_gui():
-    from streamforge.gui.desktop_app import launch_gui
-    launch_gui()
+    print("\n🖥️ Launching GUI...")
+    print("1. Basic GUI")
+    print("2. Enhanced GUI (Recommended)")
+    choice = input("\nSelect: ")
+    
+    if choice == '2':
+        from streamforge.gui.enhanced_gui import launch_gui
+        launch_gui()
+    else:
+        from streamforge.gui.desktop_app import launch_gui
+        launch_gui()
 
 def start_web_server():
     print("\n🌐 Starting web server...")
-    print("📍 URL: http://localhost:8000")
+    print("1. Basic Web Server")
+    print("2. Enhanced Web Server (Recommended)")
+    choice = input("\nSelect: ")
+    
+    print("\n📍 URL: http://localhost:8000")
     print("Press Ctrl+C to stop\n")
-    from streamforge.web.app import app
+    
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    if choice == '2':
+        from streamforge.web.enhanced_web import app
+        uvicorn.run(app, host="0.0.0.0", port=8000)
+    else:
+        from streamforge.web.app import app
+        uvicorn.run(app, host="0.0.0.0", port=8000)
 
 def view_history():
     from streamforge.database.db_manager import DatabaseManager
@@ -181,13 +278,13 @@ async def main():
             elif choice == '3':
                 await batch_download()
             elif choice == '4':
-                print("\n⚠️  Channel download - Coming soon!")
+                await channel_download()
             elif choice == '5':
                 await video_converter()
             elif choice == '6':
-                print("\n⚠️  Video editor - Coming soon!")
+                await video_editor()
             elif choice == '7':
-                print("\n⚠️  Live recorder - Coming soon!")
+                await live_recorder()
             elif choice == '8':
                 await quality_test()
             elif choice == '9':
@@ -201,6 +298,10 @@ async def main():
             elif choice == '13':
                 view_history()
             elif choice == '14':
+                await analytics_dashboard()
+            elif choice == '15':
+                await scheduler_menu()
+            elif choice == '16':
                 print("\n⚠️  Settings - Coming soon!")
             else:
                 print("\n❌ Invalid option!")

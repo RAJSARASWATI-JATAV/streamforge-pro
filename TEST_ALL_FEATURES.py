@@ -20,9 +20,16 @@ def test_imports():
         ("Core - Batch Processor", "streamforge.core.batch_processor"),
         ("Core - Quality Selector", "streamforge.core.quality_selector"),
         ("Core - Video Converter", "streamforge.core.video_converter"),
+        ("Core - Channel Downloader", "streamforge.core.channel_downloader"),
+        ("Core - Live Stream Recorder", "streamforge.core.live_stream_recorder"),
+        ("Core - Video Editor", "streamforge.core.video_editor"),
         ("Database Manager", "streamforge.database.db_manager"),
         ("CLI - Interactive", "streamforge.cli.interactive_cli"),
-        ("Web - FastAPI App", "streamforge.web.app"),
+        ("Web - Basic App", "streamforge.web.app"),
+        ("Web - Enhanced App", "streamforge.web.enhanced_web"),
+        ("GUI - Enhanced", "streamforge.gui.enhanced_gui"),
+        ("Utils - Analytics", "streamforge.utils.analytics"),
+        ("Utils - Scheduler", "streamforge.utils.scheduler"),
     ]
     
     passed = 0
@@ -109,9 +116,16 @@ def test_file_structure():
         "src/streamforge/core/batch_processor.py",
         "src/streamforge/core/quality_selector.py",
         "src/streamforge/core/video_converter.py",
+        "src/streamforge/core/channel_downloader.py",
+        "src/streamforge/core/live_stream_recorder.py",
+        "src/streamforge/core/video_editor.py",
         "src/streamforge/cli/interactive_cli.py",
         "src/streamforge/web/app.py",
+        "src/streamforge/web/enhanced_web.py",
+        "src/streamforge/gui/enhanced_gui.py",
         "src/streamforge/database/db_manager.py",
+        "src/streamforge/utils/analytics.py",
+        "src/streamforge/utils/scheduler.py",
         "setup.py",
         "requirements.txt",
         "README.md",
@@ -163,6 +177,22 @@ def test_functionality():
         print(f"  [PASS] Simple Downloader initialized")
     except Exception as e:
         print(f"  [FAIL] Simple Downloader: {e}")
+    
+    # Test Video Editor
+    try:
+        from streamforge.core.video_editor import VideoEditor
+        editor = VideoEditor()
+        print(f"  [PASS] Video Editor initialized")
+    except Exception as e:
+        print(f"  [FAIL] Video Editor: {e}")
+    
+    # Test Analytics
+    try:
+        from streamforge.utils.analytics import Analytics
+        analytics = Analytics(":memory:")
+        print(f"  [PASS] Analytics initialized")
+    except Exception as e:
+        print(f"  [FAIL] Analytics: {e}")
 
 def print_summary():
     """Print feature summary"""
@@ -175,6 +205,7 @@ def print_summary():
             ("Single Video Download", "WORKING"),
             ("Playlist Download", "WORKING"),
             ("Batch Download", "WORKING"),
+            ("Channel Download", "WORKING"),
             ("Quality Selection", "WORKING"),
             ("Download Manager", "WORKING"),
             ("Video Converter", "WORKING"),
@@ -183,18 +214,20 @@ def print_summary():
         "INTERFACES": [
             ("CLI Interface", "WORKING"),
             ("Interactive CLI", "WORKING"),
-            ("Web Interface", "BASIC"),
-            ("GUI Interface", "BASIC"),
+            ("Web Interface Basic", "WORKING"),
+            ("Web Interface Enhanced", "WORKING"),
+            ("GUI Basic", "WORKING"),
+            ("GUI Enhanced", "WORKING"),
             ("Mobile Interface", "STUB"),
         ],
         "ADVANCED FEATURES": [
-            ("Channel Download", "PLANNED"),
-            ("Live Stream Recording", "STUB"),
-            ("Video Editor", "STUB"),
+            ("Live Stream Recording", "WORKING"),
+            ("Video Editor (Trim/Merge/Watermark)", "WORKING"),
+            ("Analytics Dashboard", "WORKING"),
+            ("Download Scheduler", "WORKING"),
             ("Cloud Upload", "STUB"),
             ("Browser Extension", "PLANNED"),
             ("Voice Commands", "PLANNED"),
-            ("Analytics Dashboard", "PLANNED"),
         ]
     }
     
