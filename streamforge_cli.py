@@ -45,7 +45,13 @@ def print_menu():
     print("  13. View Download History")
     print("  14. Analytics Dashboard")
     print("  15. Download Scheduler")
-    print("  16. Settings")
+    print("  16. AI Quality Optimizer")
+    print("  17. Cloud Upload")
+    print("  18. Settings")
+    
+    print("\n🤖 BOTS & INTEGRATIONS:")
+    print("  19. Telegram Bot")
+    print("  20. Discord Bot")
     
     print("\n  0. Exit")
     print("="*60)
@@ -156,6 +162,46 @@ async def analytics_dashboard():
     from streamforge.utils.analytics import Analytics
     analytics = Analytics()
     analytics.print_dashboard()
+
+async def ai_optimizer():
+    from streamforge.utils.ai_quality_optimizer import AIQualityOptimizer
+    optimizer = AIQualityOptimizer()
+    
+    system = optimizer.analyze_system()
+    print(f"\n📊 System Analysis:")
+    print(f"   CPU Usage: {system['cpu_usage']:.1f}%")
+    print(f"   Memory: {system['memory_available_gb']:.1f} GB")
+    print(f"   Disk: {system['disk_free_gb']:.1f} GB")
+    print(f"   Performance: {system['performance_score']:.1f}/100")
+    
+    recommendations = optimizer.get_recommendations()
+    print(f"\n💡 AI Recommendations:")
+    print(f"   Quality: {recommendations['recommended_quality']}")
+    print(f"   Reason: {recommendations['reason']}")
+    print(f"   Health: {recommendations['system_health']}")
+
+async def cloud_upload():
+    from streamforge.cloud.cloud_uploader import CloudUploader
+    uploader = CloudUploader()
+    
+    print("\n☁️ Cloud Upload")
+    print("1. Google Drive")
+    print("2. Dropbox")
+    print("3. OneDrive")
+    
+    choice = input("\nSelect: ")
+    file_path = input("File path: ")
+    
+    if choice == '1':
+        uploader.upload_to_google_drive(file_path)
+    elif choice == '2':
+        uploader.upload_to_dropbox(file_path)
+    elif choice == '3':
+        uploader.upload_to_onedrive(file_path)
+
+def telegram_bot():
+    from streamforge.bots.telegram_bot import main
+    main()
 
 async def scheduler_menu():
     from streamforge.utils.scheduler import DownloadScheduler
@@ -302,7 +348,15 @@ async def main():
             elif choice == '15':
                 await scheduler_menu()
             elif choice == '16':
+                await ai_optimizer()
+            elif choice == '17':
+                await cloud_upload()
+            elif choice == '18':
                 print("\n⚠️  Settings - Coming soon!")
+            elif choice == '19':
+                telegram_bot()
+            elif choice == '20':
+                print("\n⚠️  Discord bot - Coming soon!")
             else:
                 print("\n❌ Invalid option!")
             
