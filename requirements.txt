@@ -1,0 +1,51 @@
+# StreamForge-Pro Requirements
+# Core dependencies
+yt-dlp>=2023.12.30
+ffmpeg-python>=0.2.0
+requests>=2.31.0
+aiohttp>=3.9.0
+asyncio>=3.4.3
+
+# Database
+aiosqlite>=0.19.0
+sqlalchemy>=2.0.0
+
+# Configuration
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# CLI Interface
+click>=8.1.0
+rich>=13.7.0
+prompt-toolkit>=3.0.0
+
+# GUI Interface (optional)
+PyQt6>=6.6.0;extra=="gui"
+qasync>=0.24.0;extra=="gui"
+
+# Web Interface (optional)
+fastapi>=0.104.0;extra=="web"
+uvicorn>=0.24.0;extra=="web"
+websockets>=12.0;extra=="web"
+jinja2>=3.1.0;extra=="web"
+
+# Mobile/Termux (optional)
+kivy>=2.2.0;extra=="mobile"
+
+# Utilities
+pillow>=10.1.0
+python-magic>=0.4.27
+psutil>=5.9.0
+tqdm>=4.66.0
+
+# Security
+cryptography>=41.0.0
+pyjwt>=2.8.0
+
+# Testing (dev)
+pytest>=7.4.0;extra=="dev"
+pytest-asyncio>=0.21.0;extra=="dev"
+pytest-cov>=4.1.0;extra=="dev"
+black>=23.0.0;extra=="dev"
+flake8>=6.0.0;extra=="dev"
+mypy>=1.5.0;extra=="dev"
