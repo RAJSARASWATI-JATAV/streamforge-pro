@@ -51,8 +51,26 @@ fi
 echo "Setting up storage access..."
 termux-setup-storage
 
+# Create desktop shortcut
+echo "Creating shortcuts..."
+mkdir -p ~/.shortcuts
+echo '#!/bin/bash
+cd ~/streamforge-pro && python streamforge_hacker.py' > ~/.shortcuts/streamforge
+chmod +x ~/.shortcuts/streamforge
+
+# Setup alias
+echo "alias sf='cd ~/streamforge-pro && python streamforge_hacker.py'" >> ~/.bashrc
+
 echo ""
-echo "[SUCCESS] Installation complete!"
+echo "╔═══════════════════════════════════════════════════════════════╗"
+echo "║                    ✅ INSTALLATION COMPLETE                   ║"
+echo "╚═══════════════════════════════════════════════════════════════╝"
 echo ""
-echo "Run: python streamforge_hacker.py"
+echo "🚀 Quick Start:"
+echo "   python streamforge_hacker.py"
+echo "   OR just type: sf"
+echo ""
+echo "📖 Full Guide: cat TERMUX_COMPLETE_GUIDE.md"
+echo ""
+echo "© 2025 RAJSARASWATI JATAV - Gwalior, India"
 echo ""
