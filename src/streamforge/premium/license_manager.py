@@ -14,12 +14,12 @@ class LicenseManager:
     
     TIERS = {
         'free': {
-            'name': 'Free',
+            'name': 'Free (All Features Unlocked)',
             'price': 0,
-            'downloads_per_day': 10,
-            'max_quality': '720p',
-            'concurrent_downloads': 1,
-            'features': ['basic_download', 'single_video']
+            'downloads_per_day': -1,  # Unlimited
+            'max_quality': '8K',
+            'concurrent_downloads': 10,
+            'features': ['all_features', 'unlimited', 'instagram_pro', 'tiktok_pro', 'cloud_upload', 'voice_commands', 'api_access']
         },
         'basic': {
             'name': 'Basic',
