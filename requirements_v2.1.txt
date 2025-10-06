@@ -1,0 +1,13 @@
+# StreamForge-Pro v2.1.0 Requirements
+# Created by RAJSARASWATI JATAV
+
+# Voice Commands
+SpeechRecognition>=3.10.0
+PyAudio>=0.2.13
+
+# Browser Extension Support
+websockets>=12.0
+flask-cors>=4.0.0
+
+# Additional Features
+pyttsx3>=2.90
