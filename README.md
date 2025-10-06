@@ -98,7 +98,16 @@
 
 ## 📦 Installation
 
-### Quick Install
+### ⚡ Quick Install (Copy & Paste)
+
+```bash
+git clone https://github.com/RAJSARASWATI-JATAV/streamforge-pro.git
+cd streamforge-pro
+pip install -r requirements_complete.txt
+python streamforge_hacker.py
+```
+
+### Detailed Installation
 
 ```bash
 # Clone repository
