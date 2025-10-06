@@ -3,7 +3,7 @@
 ```
 ╔═══════════════════════════════════════════════════════════════════════════╗
 ║                                                                           ║
-║                    StreamForge-Pro v2.0.0 [ELITE]                        ║
+║                    StreamForge-Pro v2.2.0 [ELITE]                        ║
 ║              Advanced Multi-Platform Media Downloader                    ║
 ║                                                                           ║
 ║              👨💻 Created by: RAJSARASWATI JATAV 👨💻                    ║
@@ -28,7 +28,7 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.0.0-orange.svg)](https://github.com/RAJSARASWATI-JATAV/streamforge-pro)
+[![Version](https://img.shields.io/badge/version-2.2.0-orange.svg)](https://github.com/RAJSARASWATI-JATAV/streamforge-pro)
 [![Creator](https://img.shields.io/badge/creator-RAJSARASWATI%20JATAV-red.svg)](https://github.com/rajsaraswati)
 [![Location](https://img.shields.io/badge/location-Gwalior%2C%20India-green.svg)](https://github.com/rajsaraswati)
 [![Expertise](https://img.shields.io/badge/expertise-Python%20%7C%20Ethical%20Hacking-blue.svg)](https://github.com/rajsaraswati)
@@ -84,6 +84,10 @@
 - ✅ **Download Manager**: Queue system with concurrent downloads
 - ✅ **Database Manager**: SQLite for download history
 - ✅ **User Preference Learning**: AI learns your preferences
+- ✅ **Plugin System**: Community-driven extensibility
+- ✅ **RESTful API**: Full API access for integrations
+- ✅ **Custom Themes**: 5 built-in + unlimited custom themes
+- ✅ **Live Server**: Real-time WebSocket monitoring
 
 ### 🎨 Interfaces (100% by RAJSARASWATI JATAV)
 - ✅ **CLI Interface**: Command-line with rich output
