@@ -46,8 +46,20 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Create alias
+echo "alias sf='cd ~/streamforge-pro && python3 streamforge_hacker.py'" >> ~/.zshrc
+echo "alias sf='cd ~/streamforge-pro && python3 streamforge_hacker.py'" >> ~/.bash_profile
+
 echo ""
-echo "[SUCCESS] Installation complete!"
+echo "╔═══════════════════════════════════════════════════════════════╗"
+echo "║                    ✅ INSTALLATION COMPLETE                   ║"
+echo "╚═══════════════════════════════════════════════════════════════╝"
 echo ""
-echo "Run: python3 streamforge_hacker.py"
+echo "🚀 Quick Start:"
+echo "   python3 streamforge_hacker.py"
+echo "   OR just type: sf"
+echo ""
+echo "📖 Full Guide: cat MACOS_COMPLETE_GUIDE.md"
+echo ""
+echo "© 2025 RAJSARASWATI JATAV - Gwalior, India"
 echo ""
