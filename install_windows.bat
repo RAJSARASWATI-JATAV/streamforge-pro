@@ -44,8 +44,18 @@ if errorlevel 1 (
 )
 
 echo.
-echo [SUCCESS] Installation complete!
+echo ╔═══════════════════════════════════════════════════════════════╗
+echo ║                    ✅ INSTALLATION COMPLETE                   ║
+echo ╚═══════════════════════════════════════════════════════════════╝
 echo.
-echo Run: python streamforge_hacker.py
+echo 🚀 Quick Start:
+echo    python streamforge_hacker.py
+echo.
+echo 📖 Full Guide: type WINDOWS_COMPLETE_GUIDE.md
+echo.
+echo 🎯 Create Desktop Shortcut:
+echo    Right-click streamforge_hacker.py ^> Send to ^> Desktop
+echo.
+echo © 2025 RAJSARASWATI JATAV - Gwalior, India
 echo.
 pause
