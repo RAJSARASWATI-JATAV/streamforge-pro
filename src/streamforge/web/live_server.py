@@ -35,20 +35,30 @@ HTML = """
     <title>StreamForge-Pro Live</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Courier New', monospace; background: #0a0a0a; color: #00ff41; }
-        .header { background: #1a1a1a; padding: 20px; border-bottom: 2px solid #00ff41; }
-        .title { font-size: 24px; font-weight: bold; }
-        .subtitle { color: #888; margin-top: 5px; }
+        @keyframes glow { 0%, 100% { box-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41; } 50% { box-shadow: 0 0 20px #00ff41, 0 0 30px #00ff41; } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes rainbow { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
+        body { font-family: 'Courier New', monospace; background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 100%); color: #00ff41; min-height: 100vh; }
+        .header { background: linear-gradient(90deg, #1a1a1a 0%, #2a1a3a 100%); padding: 20px; border-bottom: 2px solid #00ff41; animation: glow 2s infinite; }
+        .title { font-size: 28px; font-weight: bold; text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41; animation: pulse 2s infinite; }
+        .subtitle { color: #ff00ff; margin-top: 5px; text-shadow: 0 0 5px #ff00ff; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .download-box { background: #1a1a1a; padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #00ff41; }
-        input { width: 100%; padding: 15px; background: #0a0a0a; border: 2px solid #00ff41; color: #fff; font-size: 16px; border-radius: 5px; }
-        button { width: 100%; padding: 15px; background: #00ff41; color: #0a0a0a; border: none; font-size: 18px; font-weight: bold; cursor: pointer; border-radius: 5px; margin-top: 10px; }
-        button:hover { background: #00cc33; }
-        .status { background: #1a1a1a; padding: 15px; border-radius: 5px; margin-top: 20px; border-left: 4px solid #00ff41; }
-        .log { background: #0a0a0a; padding: 10px; margin: 5px 0; border-radius: 3px; font-size: 14px; }
-        .success { border-left-color: #00ff41; }
-        .error { border-left-color: #ff0041; color: #ff0041; }
-        .info { border-left-color: #00ccff; color: #00ccff; }
+        .download-box { background: linear-gradient(135deg, #1a1a1a 0%, #2a1a3a 100%); padding: 20px; border-radius: 15px; margin: 20px 0; border: 2px solid #00ff41; animation: slideIn 0.5s ease-out, glow 3s infinite; }
+        input { width: 100%; padding: 15px; background: #0a0a0a; border: 2px solid #00ff41; color: #fff; font-size: 16px; border-radius: 10px; transition: all 0.3s; }
+        input:focus { outline: none; border-color: #ff00ff; box-shadow: 0 0 15px #ff00ff; }
+        button { width: 100%; padding: 18px; background: linear-gradient(90deg, #00ff41 0%, #00cc33 100%); color: #0a0a0a; border: none; font-size: 18px; font-weight: bold; cursor: pointer; border-radius: 10px; margin-top: 10px; transition: all 0.3s; text-shadow: 0 0 5px #000; }
+        button:hover { transform: scale(1.05); box-shadow: 0 0 20px #00ff41; }
+        .status { background: linear-gradient(135deg, #1a1a1a 0%, #2a1a3a 100%); padding: 15px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #00ff41; animation: slideIn 0.7s ease-out; }
+        .log { background: #0a0a0a; padding: 12px; margin: 8px 0; border-radius: 8px; font-size: 14px; border-left: 3px solid; animation: slideIn 0.3s ease-out; transition: all 0.3s; }
+        .log:hover { transform: translateX(5px); }
+        .success { border-left-color: #00ff41; color: #00ff41; text-shadow: 0 0 5px #00ff41; }
+        .error { border-left-color: #ff0041; color: #ff0041; text-shadow: 0 0 5px #ff0041; }
+        .info { border-left-color: #00ccff; color: #00ccff; text-shadow: 0 0 5px #00ccff; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .stat-card { background: linear-gradient(135deg, #1a1a1a 0%, #2a1a3a 100%); padding: 20px; border-radius: 10px; border: 2px solid #00ff41; text-align: center; animation: pulse 3s infinite; }
+        .stat-value { font-size: 32px; font-weight: bold; color: #00ff41; text-shadow: 0 0 10px #00ff41; }
+        .stat-label { color: #888; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -59,10 +69,24 @@ HTML = """
         </div>
     </div>
     <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="totalDownloads">0</div>
+                <div class="stat-label">Total Downloads</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="activeUsers">1</div>
+                <div class="stat-label">Active Users</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="successRate">100%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+        </div>
         <div class="download-box">
             <h2>📥 Download Video</h2>
             <input type="text" id="url" placeholder="Paste video URL here...">
-            <button onclick="download()">Download Now</button>
+            <button onclick="download()">⚡ Download Now</button>
         </div>
         <div class="status">
             <h3>📊 Live Status</h3>
